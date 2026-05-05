@@ -1,25 +1,21 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('fillPersonalInfo', () => {
+    cy.get('#fullName').type('Test User')
+    cy.get('#dateOfBirth').type('1990-01-01')
+    cy.get('#jobTitle').type('Test Automation Engineer')
+    cy.get('#email').type('test.user@example.com')
+    cy.get('#phone').type('123-456-7890')
+    cy.get('#location').type('Around the world')
+    cy.contains('button', 'Add link').scrollIntoView().click()
+    cy.get('#link-title').type('Portfolio')
+    cy.get('#link-url').type('https://myportfolio.com')
+    cy.get('[role="dialog"]').within(() => {
+        cy.contains('button', 'Add').click()
+    })
+    cy.contains('button', 'Save & Next Step').scrollIntoView().click()
+})
+
+Cypress.Commands.add('fillSummary', () => {
+    cy.get('[role="switch"]').click()
+    cy.get('#summary').type('Experienced QA Automation Engineer with expertise in Cypress and JavaScript.')
+    cy.contains('button', 'Save & Next Step').scrollIntoView().click()
+})
