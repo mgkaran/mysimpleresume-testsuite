@@ -1,11 +1,9 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require("cypress")
 
 module.exports = defineConfig({
-  allowCypressEnv: false,
-
-  e2e: {
-    setupNodeEvents(on, config) {
-      // implement node event listeners here
+    e2e: {
+        baseUrl: "https://www.mysimpleresume.com",
+        setupNodeEvents(on, config) {},
     },
-  },
-});
+})
+
